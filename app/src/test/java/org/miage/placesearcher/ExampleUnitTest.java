@@ -1,4 +1,4 @@
-package com.example.multisearchviewapplication;
+package org.miage.placesearcher;
 
 import org.junit.Test;
 
