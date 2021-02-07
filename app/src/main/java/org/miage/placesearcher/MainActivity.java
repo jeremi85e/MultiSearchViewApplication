@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(int index, CharSequence string) {
-                Log.e("TEST ITEM SELECTED i", index + "");
-                Log.e("TEST ITEM SELECTED s", string + "");
 
                 mProgressBar.setVisibility(View.VISIBLE);
 
@@ -71,17 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(int index, CharSequence string) {
-                Log.e("TEST TEXT CHANGED i", index + "");
-                Log.e("TEST TEXT CHANGED s", string + "");
             }
+
             @Override
             public void onSearchComplete(int index, CharSequence string) {
-                Log.e("TEST SEARCH COMPLETE i", index + "");
-                Log.e("TEST SEARCH COMPLETE s", string + "");
-
-                textSelected = string.toString();
 
                 mProgressBar.setVisibility(View.VISIBLE);
+
+                textSelected = string.toString();
 
                 // Launch a search through the PlaceSearchService
                 PlaceSearchService.INSTANCE.searchPlacesFromAddress(string.toString());
@@ -89,16 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSearchItemRemoved(int index) {
-                Log.e("TEST SEARCH ITEM REM i", index + "");
                 textSelected = "";
             }
-
         });
-
-        /*// Set textfield value according to intent
-        if (getIntent().hasExtra("currentSearch")) {
-            mSearchEditText.setText(getIntent().getStringExtra("currentSearch"));
-        }*/
     }
 
     @Override
