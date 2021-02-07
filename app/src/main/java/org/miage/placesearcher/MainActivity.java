@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.activity_main_loader)
     ProgressBar mProgressBar;
 
+    //Bind de la vue multiSearchView
     @BindView(R.id.multiSearchView)
     MultiSearchView multiSearchView;
 
@@ -50,8 +51,16 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mPlaceAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        /**
+         * Fonction permettant l'implémentation du framework MultiSearchView
+         */
         multiSearchView.setSearchViewListener(new MultiSearchView.MultiSearchViewListener() {
 
+            /**
+             * Permet de définir ce qu'il se passe lorsque l'on clique sur l'une des recherches effectuées
+             * @param index le numéro de la recherche
+             * @param string le contenu de la recherche
+             */
             @Override
             public void onItemSelected(int index, CharSequence string) {
 
@@ -63,10 +72,20 @@ public class MainActivity extends AppCompatActivity {
                 PlaceSearchService.INSTANCE.searchPlacesFromAddress(string.toString());
             }
 
+            /**
+             * Permet de changer le contenu d'une recherche existante
+             * @param index le numéro de la recherche
+             * @param string le contenu de la recherche
+             */
             @Override
             public void onTextChanged(int index, CharSequence string) {
             }
 
+            /**
+             * Permet de définir ce qu'il se passe lors d'une recherche
+             * @param index le numéro de la recherche
+             * @param string le contenu de la recherche
+             */
             @Override
             public void onSearchComplete(int index, CharSequence string) {
 
@@ -78,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 PlaceSearchService.INSTANCE.searchPlacesFromAddress(string.toString());
             }
 
+            /**
+             * Permet de définir ce qu'il se passe lorsqu'un recherche est supprimée
+             * @param index le numéro de la recherche
+             */
             @Override
             public void onSearchItemRemoved(int index) {
                 textSelected = "";
